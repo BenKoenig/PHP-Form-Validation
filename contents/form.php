@@ -7,8 +7,6 @@ if(isset($_POST['do-submit'])) {
         !isset($_POST['firstName'])
         || strlen($_POST['firstName']) < 2
         || strlen($_POST['firstName']) > 100
-        || is_numeric($_POST['firstName'])
-        
     ) {
         $errors['firstName'] = "Please enter in a valid first Name.";
     } 
@@ -17,17 +15,18 @@ if(isset($_POST['do-submit'])) {
         !isset($_POST['lastName'])
         || strlen($_POST['lastName']) < 2
         || strlen($_POST['lastName']) > 100
-        || is_numeric($_POST['lastName'])
     ) {
         $errors['lastName'] = "Please enter in a valid last Name.";
     } 
-
+    if (!isset($_POST['paymentMethod']) || $_POST['paymentMethod'] === '_default') {
+        $errors['paymentMethod'] = 'Please select a payment method.';
+    }
 }
 
 function printError (string $name) {
     global $errors;
     if(isset($errors[$name])) {
-        echo '<div class="error" style="background-color: #f86161; padding: 5px">' . $errors[$name] . '</div>';
+        echo '<div class="error">' . $errors[$name] . '</div>';
     }
 }
 
@@ -42,24 +41,30 @@ function old (string $name) {
 <?php
 
     if(!empty($errors) || !isset($_POST['do-submit'])):?>
-    <form method="post" novalidate>
-        <div>
+    <form method="post" class="form" novalidate >
+        <div class="form__field">
             <label for="name">First Name</label>
             <input type="text" name="firstName" id="firstName" required value="<?php old('firstName') ?>">
-            <?php
-            printError("firstName");
-            ?>
+            <div>
+                <?php
+                printError("firstName");
+                ?>
+            </div>
+       
         </div>
 
-        <div>
+        <div class="form__field">
             <label for="lastName">Last Name</label>
             <input type="text" name="lastName" id="lastName" required value="<?php old('lastName') ?>">
-            <?php
-            printError("lastName");
-            ?>
+            <div>
+                <?php
+                printError("lastName");
+                ?>
+            </div>
+
         </div>
 
-        <div>
+        <div class="form__field">
             <label for="paymentMethod">Payment Method</label>
             <select name="paymentMethod" id="paymentMethod">
                 <option value="_default" disabled selected>Please select a method</option>
@@ -68,8 +73,13 @@ function old (string $name) {
                 <option value="mastercard">MasterCard</option>
                 <option value="visa">Visa</option>
             </select>
+            <div>
+                <?php printError("paymentMethod"); ?>
+            </div>
+
+
         </div>
-        <div>
+        <div class="form__field">
             <label for="street">Street</label>
             <input type="text" name="street" id="street">
         </div>
