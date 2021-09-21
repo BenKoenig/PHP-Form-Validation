@@ -1,10 +1,31 @@
 * {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #FFFCF2;
 }
+
+h1 {
+    border-bottom: 0.15rem solid black;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    outline: 0;
+    border: 0;
+}
+
 
 .form {
     border: 0.15rem solid black;
     display: inline-block;
+    width: 20rem;
     flex-direction: column;
     border-radius: 0.3rem;
     padding: 1.25rem;

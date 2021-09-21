@@ -4,6 +4,11 @@ $errors = [];
 
 if(isset($_POST['do-submit'])) {
     if(
+        !isset($_POST['gender'])
+    ){
+        $errors['gender'] = "Please select a gender.";
+    }
+    if(
         !isset($_POST['firstName'])
         || strlen($_POST['firstName']) < 2
         || strlen($_POST['firstName']) > 100
@@ -42,6 +47,34 @@ function old (string $name) {
 
     if(!empty($errors) || !isset($_POST['do-submit'])):?>
     <form method="post" class="form" novalidate >
+        <div class="form__field">
+            <p>Select your gender</p>
+            <fieldset>
+                <div>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                </div>
+                <div>
+                    <input type="radio" id="male" name="gender" value="male">
+                    <label for="male">Male</label>
+                </div>
+                <div>
+                    <input type="radio" id="non" name="gender" value="non">
+                    <label for="non">Non-binary</label>
+                </div>
+                <div>
+                    <input type="radio" id="other" name="gender" value="other">
+                    <label for="other">Other</label>
+                </div>
+                <div>
+                <?php
+                printError("gender");
+                ?>
+            </div>
+
+            </fieldset>
+        </div>
+
         <div class="form__field">
             <label for="name">First Name</label>
             <input type="text" name="firstName" id="firstName" required value="<?php old('firstName') ?>">
