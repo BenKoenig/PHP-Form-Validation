@@ -26,6 +26,10 @@ if(isset($_POST['do-submit'])) {
     if (!isset($_POST['paymentMethod']) || $_POST['paymentMethod'] === '_default') {
         $errors['paymentMethod'] = 'Please select a payment method.';
     }
+    if(!isset($_POST['tos'])){
+        $errors['tos'] = "You must accept the terms of service";
+    }
+ 
 }
 
 function printError (string $name) {
@@ -113,8 +117,22 @@ function old (string $name) {
 
         </div>
         <div class="form__field">
-            <label for="street">Street</label>
-            <input type="text" name="street" id="street">
+            <label for="adress1">Adress Line 1</label>
+            <input type="text" name="adress1" id="adress1">
+        </div>
+        <div class="form__field">
+            <label for="adress2">Adress Line 2</label>
+            <input type="text" name="adress2" id="adress2">
+        </div>
+        <div class="form__field">
+            <div>
+                <input type="checkbox" name="tos" id="tos">
+                <label for="tos">I accept the <a href="#">terms of service</a></label>
+            </div>
+            <div>
+                <?php printError("tos"); ?>
+            </div>
+
         </div>
         <div>
             <button type="submit" name="do-submit" value="do-submit">Send</button>
