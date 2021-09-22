@@ -12,6 +12,20 @@ p {
     margin: 0;
 }
 
+button {
+    background:cornflowerblue;
+    color: white; 
+    border-radius: 0.3rem;
+    outline: 0;
+    border: 0;
+    padding: 0.5rem 1rem;
+    margin-top: 0.7rem;
+}
+
+button:hover {
+    background: black;
+}
+
 
 fieldset {
     display: flex;
@@ -21,7 +35,6 @@ fieldset {
     outline: 0;
     border: 0;
 }
-
 
 .form {
     border: 0.15rem solid black;
@@ -35,6 +48,7 @@ fieldset {
 .form__field {
     display:flex;
     flex-direction: column;
+    margin: 0.4rem 0;
 }
 
 .error {
