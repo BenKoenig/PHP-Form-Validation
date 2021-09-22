@@ -39,6 +39,10 @@ if(isset($_POST['do-submit'])) {
     if (!isset($_POST['phone']) || preg_match($pattern, $_POST['phone']) !== 1) {
         $errors['phone'] = 'Please enter a valid phone number.';
     }
+    $pattern = '/[\w.]+@[\w]+\.[a-z]{2,}/m';
+    if (!isset($_POST['email']) || preg_match($pattern, $_POST['email']) !== 1) {
+        $errors['email'] = 'Please enter a valid email adress.';
+    }
 }
 
 function printError (string $name) {
@@ -131,28 +135,21 @@ function old (string $name) {
             </div>
         </div>
         <div class="form__field">
-            <label for="phone">Your Phone number</label>
+            <label for="phone">Your phone number</label>
             <input type="text" name="phone" id="phone" value="<?php old('phone') ?>">
-            <div>
-                <?php printError("phone"); ?>
-            </div>
+            <div><?php printError("phone"); ?></div>
         </div>
         <div class="form__field">
-            <label for="adress1">Adress Line 1</label>
-            <input type="text" name="adress1" id="adress1">
-        </div>
-        <div class="form__field">
-            <label for="adress2">Adress Line 2</label>
-            <input type="text" name="adress2" id="adress2">
+            <label for="email">Your email adress</label>
+            <input type="text" name="email" id="email" value="<?php old('email') ?>">
+            <div><?php printError("email"); ?></div>
         </div>
         <div class="form__field">
             <div>
                 <input type="checkbox" name="tos" id="tos" value="tos" <?php if(isset($_POST['tos']) && $_POST['tos'] =='tos' ){echo "checked";}?> >
                 <label for="tos">I accept the <a href="index.php?page=tos">terms of service</a></label>
             </div>
-            <div>
-                <?php printError("tos"); ?>
-            </div>
+            <div><?php printError("tos"); ?></div>
 
         </div>
         <div>
@@ -160,5 +157,6 @@ function old (string $name) {
         </div>
     </form>
 <?php else: ?>
-    Vielen dank für ihre Nachricht.
+    <p>Thank you for your message</p>
+    <a href="index.php">Back to home</a
 <?php endif; ?>
