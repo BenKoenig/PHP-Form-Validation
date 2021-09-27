@@ -72,10 +72,10 @@ function old (string $name) {
 
             <?php
             $gender = [
-                "f" => "female",
-                "m" => "male",
-                "n" => "non-binary", 
-                "o" => "other"
+                "female" => "female",
+                "male" => "male",
+                "non-binary" => "non-binary", 
+                "other" => "other"
             ];
             ?>
                 
@@ -94,7 +94,7 @@ function old (string $name) {
                 </div>
             
             <?php endforeach; ?>
-  
+      
             <div>
                 <?php printError("gender");?>
             </div>
@@ -184,6 +184,15 @@ function old (string $name) {
         </div>
     </form>
 <?php else: ?>
-    <p>Thank you for your message</p>
+    <p>Thank you for your message.</p>
+    <ol>
+        <li><em>Gender:</em> <?php echo ucfirst($_POST["gender"])?></li>
+        <li><em>First Name:</em> <?php echo ucfirst($_POST["firstName"])?></li>
+        <li><em>Last Name:</em> <?php echo ucfirst($_POST["lastName"])?></li>
+        <li><em>Payment Method:</em> <?php echo ucfirst($_POST["paymentMethod"])?></li>
+        <li><em>Age:</em> <?php echo $_POST["age"]?></li>
+        <li><em>Phone Number:</em> <?php echo $_POST["phone"]?></li>
+        <li><em>Email Adress:</em> <?php echo $_POST["email"]?></li>
+    </ol>
     <a href="index.php">Back to home</a
 <?php endif; ?>
