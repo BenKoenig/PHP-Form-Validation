@@ -72,10 +72,10 @@ function old (string $name) {
 
             <?php
             $gender = [
-                "f" => "female",
-                "m" => "male",
-                "n" => "non-binary", 
-                "o" => "other"
+                "female" => "female",
+                "male" => "male",
+                "non-binary" => "non-binary", 
+                "other" => "other"
             ];
             ?>
                 
@@ -83,18 +83,33 @@ function old (string $name) {
             foreach($gender as $value => $label): ?>
                 <?php
                     $checkedParticle = '';
-                    if (isset($_POST['gender']) && $_POST['gender'] === $value) {
+                    if(isset($_POST['gender']) && _POST['gender'] === $value) {
                         $checkedParticle = ' checked';
                     }
                 ?>
 
                 <div>
-                    <input type="radio" name="gender" value="<?php echo $value; ?>" id="<?php echo $label; ?>" <?php echo $checkedParticle; ?> required>
-                    <label for="<?php echo $label; ?>"><?php echo ucfirst($label); ?></label>
+                    <input type="radio" name="gender" value="<?php echo $value; ?>" id="<?php echo $value; ?>" <?php echo $checkedParticle; ?> required>
+                    <label for="<?php echo $value; ?>"><?php echo $label; ?></label>
                 </div>
             
             <?php endforeach; ?>
-  
+            <div>
+                <input type="radio" name="gender" id="f" value="[f]" <?php if(isset($_POST['gender']) && $_POST['gender'] =='[f]' ){echo "checked";}?> required>
+                <label for="f">Female</label>
+            </div>
+            <div>
+                <input type="radio" name="gender" id="m" value="[m]"  <?php if(isset($_POST['gender']) && $_POST['gender'] =='[m]' ){echo "checked";}?> required>
+                <label for="m">Male</label>
+            </div>
+            <div>
+                <input type="radio" name="gender" id="n" value="[n]"  <?php if(isset($_POST['gender']) && $_POST['gender'] =='[n]' ){echo "checked";}?> required> 
+                <label for="n">Non-binary</label>
+            </div>
+            <div>
+                <input type="radio" name="gender" id="o" value="[o]"  <?php if(isset($_POST['gender']) && $_POST['gender'] =='[o]' ){echo "checked";}?> required>
+                <label for="o">Other</label>    
+            </div>
             <div>
                 <?php printError("gender");?>
             </div>

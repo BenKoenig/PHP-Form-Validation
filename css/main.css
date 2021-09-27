@@ -12,6 +12,18 @@ p {
     margin: 0;
 }
 
+input {
+    border-radius: 0.3rem;
+    border: 0.15rem solid black;
+    padding: 0.35rem;
+}
+
+select {
+    border-radius: 0.3rem;
+    border: 0.15rem solid black;
+    padding: 0.35rem 0;
+}
+
 button {
     background:cornflowerblue;
     color: white; 
